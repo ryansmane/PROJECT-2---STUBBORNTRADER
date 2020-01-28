@@ -12,7 +12,10 @@ const InfoContainer = props => {
    const [counter, setCounter] = useState([1]);
    const [portfolio, setPortfolio] = useState([]);
    const [open, setOpen] = useState(0);
-   const [close, setClose] = useState(0);
+   const [close, setClose] = useState(0)
+   const [sharesOwned, setSharesOwned] = useState(0)
+   const [purchases, setPurchases] = useState(0)
+   console.log(portfolio, purchases)
 
    const fetchAndSet = () => {
       fetch(
@@ -26,6 +29,14 @@ const InfoContainer = props => {
       )
          .then(res => res.json())
          .then(res => {
+            var fractionalsOwned = 0;
+            var count = 0;
+            for (let i = 0; i < res.history.day.length; i += 5) {
+               count++
+               fractionalsOwned += parseInt(quantity) / parseInt(res.history.day[i].open)
+            }
+            setPurchases(count)
+            setSharesOwned(fractionalsOwned)
             setOpen(res.history.day[0].open);
             setClose(
                res.history.day[res.history.day.length - 2]
@@ -37,7 +48,9 @@ const InfoContainer = props => {
                startDate: startDate,
                symbol: symbol,
                open: open,
-               close: close
+               close: close,
+               sharesOwned: sharesOwned,
+               purchases: purchases            
             };
             let portfolioCopy = portfolio.slice(0);
             portfolioCopy.push(portEntry);
@@ -68,6 +81,14 @@ const InfoContainer = props => {
          )
             .then(res => res.json())
             .then(res => {
+               var fractionalsOwned=0;
+               var count = 0;
+               for (let i = 0; i < res.history.day.length; i+=5) {
+                  count++
+                  fractionalsOwned += parseInt(quantity) / parseInt(res.history.day[i].open)
+               }
+               setPurchases(count)
+               setSharesOwned(fractionalsOwned)
                setOpen(res.history.day[0].open);
                setClose(res.history.day[res.history.day.length - 2].close);
             });
@@ -75,6 +96,8 @@ const InfoContainer = props => {
          let portfolioMime = portfolio.slice(0);
          portfolioMime[portfolioMime.length - 1].open = open;
          portfolioMime[portfolioMime.length - 1].close = close;
+         portfolioMime[portfolioMime.length - 1].sharesOwned = sharesOwned;
+         portfolioMime[portfolioMime.length - 1].purchases = purchases;
          setPortfolio(portfolioMime);
       }
    }, [counter]);
