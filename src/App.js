@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import InfoContainer from './containers/InfoContainer'
+import Header from './components/Header'
+import Table from './components/Table'
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
+import { Link, Switch, Route } from 'react-router-dom';
 
 function App() {
+  const [portfolio, setPortfolio] = useState([])
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Switch>
+        <Route path="/" exact render ={() => {
+          return <InfoContainer setPortfolio={setPortfolio} />
+        }}/>
+        <Route path="/table" exact render={() => {
+          return <Table portfolio={portfolio} />
+        }} />
+      </Switch>
     </div>
   );
 }
