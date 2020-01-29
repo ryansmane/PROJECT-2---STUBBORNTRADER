@@ -12,9 +12,9 @@ function App() {
 
   return (
     <div>
-      <header className="main-header">
+      
       <Header />
-      </header>
+      <div class="mainPage">
       <Switch>
         <Route path="/" exact render ={() => {
           return <InfoContainer setPortfolio={setPortfolio} />
@@ -23,6 +23,7 @@ function App() {
           return <Table portfolio={portfolio} />
         }} />
       </Switch>
+      </div>
     </div>
   );
 }

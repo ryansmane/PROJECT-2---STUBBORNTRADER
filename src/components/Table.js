@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 function Table(props) {
    return (
-      <table>
+      <table className="wholetable">
          <tbody>
             <tr>
                <th></th>
@@ -12,7 +12,7 @@ function Table(props) {
                <th>Date Purchased</th>
                <th>Price</th>
                <th>Last Close</th>
-               <th>Shares Owned</th>
+               <th>Shares</th>
                <th>Equity</th>
                <th>Profit</th>
             </tr>
@@ -39,12 +39,12 @@ function Table(props) {
             })}
             <tr>
                    <th>Total</th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
-                   <th></th>
+                   <th>x</th>
+                   <th>x</th>
+                   <th>x</th>
+                   <th>x</th>
+                   <th>x</th>
+                   <th>x</th>
                    <th>{props.portfolio.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.sharesOwned) * parseInt(currentValue.close),0)}</th>
                    <th>{props.portfolio.reduce((accumulator, currentValue) => accumulator + (parseInt(currentValue.sharesOwned) * parseInt(currentValue.close)) -
                        (parseInt(currentValue.quantity) * parseInt(currentValue.purchases)),0)}</th>

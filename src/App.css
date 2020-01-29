@@ -2,22 +2,73 @@
    margin: 0;
    padding: 0;
 }
-
+nav {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0px;
+  padding: 0px 10px;
+  letter-spacing: 2px;
+}
+.mainPage {
+  background-color:#CDBE65;
+  color: black
+}
 body {
-   background-color: red;
+   background-color: white;
+   margin: 0;
+   padding:0;
+}
+.mainh1{
+  letter-spacing: 2px;
+  font-size: 35px;
+  padding-top: 32px;
+  padding-right: 85px;
+}
+.wholetable {
+   width: 100vw;
+   font-size: 9px;;
+}
+table {
+   border-collapse: collapse;
+}
+tbody {
+   display: flex;
+}
+tr {
+   display: block;
+   float: left;
+}
+th,
+td {
+   display: block;
+   border: 1px solid black;
 }
 
-.main-header {
-   background-color: blue;
-   padding: 30px;
+table,
+th,
+td {
+   border: 1px solid black;
+}
+.mainHeader {
+  font-family: 'Bangers', cursive;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+   background-color:#CD6574;
+   width: 100vw;
+   height: 15vh;
    text-align: center;
 }
 
 .formcontainer {
+  font-family: 'Bowlby One SC', cursive;
    display: flex;
    flex-direction: column;
    justify-content: center;
-   padding-top: 40px;
+   padding-top: 15px;
 }
 .hadi {
    font-size: 30px;
@@ -40,7 +91,7 @@ body {
    width: 150px;
 }
 .comp {
-  padding: 15px;
+   padding: 10px;
 }
 .stock-input {
    height: 30px;

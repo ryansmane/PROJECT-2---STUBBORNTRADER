@@ -174,9 +174,12 @@ const InfoContainer = props => {
          {counter.map((el, i) => {
             return (
                <form className="formcontainer" key={i}>
-                  <div className="hadi comp">
+                  {i === 0? <div className="hadi comp">
                      Had I invested 
-                     </div><div className="qinput comp">
+                     </div> : <div className="hadi comp">
+                        And
+                     </div> }
+                     <div className="qinput comp">
                      $<input className='quantinput'
                         name='quantity'
                         placeholder='amount'
@@ -203,12 +206,12 @@ const InfoContainer = props => {
                   </div>
                   <div className='startingon comp'>
                      starting on
-                     </div><div className="date comp">
+                     
                      <DatePicker
                         placeholder={'use calendar'}
                         selected={startDate}
                         onChange={setStartDate}
-                     />(my birthday?)
+                     />(01/01/2000?)
                      {/* <input
                         name='startDate'
                         onChange={e => setStartDate(e.target.value)}
@@ -233,7 +236,7 @@ const InfoContainer = props => {
 
          <Link to='/table/'>
             <button onClick={props.setPortfolio(portfolio)}>
-               Generate Portfolio
+               What would I have today?
             </button>
          </Link>
       </div>
