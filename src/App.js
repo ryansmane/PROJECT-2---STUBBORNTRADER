@@ -12,7 +12,9 @@ function App() {
 
   return (
     <div>
+      <header className="main-header">
       <Header />
+      </header>
       <Switch>
         <Route path="/" exact render ={() => {
           return <InfoContainer setPortfolio={setPortfolio} />

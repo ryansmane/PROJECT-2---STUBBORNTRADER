@@ -6,8 +6,9 @@ function Table(props) {
       <table>
          <tbody>
             <tr>
+               <th></th>
                <th>Symbol</th>
-               <th>Quantity</th>
+               <th>Purchases</th>
                <th>Date Purchased</th>
                <th>Price</th>
                <th>Last Close</th>
@@ -18,8 +19,9 @@ function Table(props) {
             {props.portfolio.map((entry, i) => {
                return (
                   <tr key={i}>
+                     <td></td>
                      <td>{entry.symbol}</td>
-                     <td>{entry.quantity}</td>
+                     <td>{entry.purchases}</td>
                      <td>{entry.startDate}</td>
                      <td>{entry.open}</td>
                      <td>{entry.close}</td>
@@ -32,8 +34,21 @@ function Table(props) {
                            parseInt(entry.quantity) * parseInt(entry.purchases)}
                      </td>
                   </tr>
+                  
                );
             })}
+            <tr>
+                   <th>Total</th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th></th>
+                   <th>{props.portfolio.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue.sharesOwned) * parseInt(currentValue.close),0)}</th>
+                   <th>{props.portfolio.reduce((accumulator, currentValue) => accumulator + (parseInt(currentValue.sharesOwned) * parseInt(currentValue.close)) -
+                       (parseInt(currentValue.quantity) * parseInt(currentValue.purchases)),0)}</th>
+            </tr>
          </tbody>
       </table>
    );
