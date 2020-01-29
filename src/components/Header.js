@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-function Header() {
+function Header(props) {
     return(
-        <div class="mainHeader">
+        <div className="mainHeader">
         <h1 className="mainh1">The Stubborn Trader</h1>
         <nav>
-            <h3>Sandbox</h3>
-            <h3>Challenges</h3>
+            <Link to="/"><h3>Sandbox</h3></Link>
+            
             <h3>About</h3>
         </nav>
         </div>

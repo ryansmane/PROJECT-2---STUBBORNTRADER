@@ -1,6 +1,5 @@
 import React from 'react';
-import { useState, useEffect, useRef } from 'react';
-import Table from '../components/Table.js';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -14,10 +13,10 @@ const InfoContainer = props => {
    const [symbol, setSymbol] = useState('');
    const [counter, setCounter] = useState([1]);
    const [portfolio, setPortfolio] = useState([]);
-   const [open, setOpen] = useState(0);
-   const [close, setClose] = useState(0);
-   const [sharesOwned, setSharesOwned] = useState(0);
-   const [purchases, setPurchases] = useState(0);
+   const [open, setOpen] = useState(0.0);
+   const [close, setClose] = useState(0.0);
+   const [sharesOwned, setSharesOwned] = useState(0.0);
+   const [purchases, setPurchases] = useState(0.0);
    const [frequency, setFrequency] = useState('');
 
    const formatDate = date => {
@@ -85,12 +84,17 @@ const InfoContainer = props => {
 
             for (let i = 0; i < res.history.day.length; i += freq) {
                count++;
-               fractionalsOwned +=
-                  parseInt(quantity) / parseInt(res.history.day[i].open);
+
+               if (!isNaN(res.history.day[i].open)) {
+                  fractionalsOwned +=
+                     parseFloat(quantity) / parseFloat(res.history.day[i].open);
+               } else {
+                  fractionalsOwned += 0;
+               }
             }
             setActualDate(date);
             setPurchases(count);
-            setSharesOwned(fractionalsOwned);
+            setSharesOwned(parseFloat(fractionalsOwned));
             setOpen(res.history.day[0].open);
             setClose(res.history.day[res.history.day.length - 2].close);
 
@@ -101,7 +105,8 @@ const InfoContainer = props => {
                open: open,
                close: close,
                sharesOwned: sharesOwned,
-               purchases: purchases
+               purchases: purchases,
+               frequency: frequency
             };
             let portfolioCopy = portfolio.slice(0);
             portfolioCopy.push(portEntry);
@@ -149,12 +154,17 @@ const InfoContainer = props => {
 
                for (let i = 0; i < res.history.day.length; i += freq) {
                   count++;
-                  fractionalsOwned +=
-                     parseInt(quantity) / parseInt(res.history.day[i].open);
+                  if (!isNaN(res.history.day[i].open)) {
+                     fractionalsOwned +=
+                        parseFloat(quantity) /
+                        parseFloat(res.history.day[i].open);
+                  } else {
+                     fractionalsOwned += 0;
+                  }
                }
                setActualDate(date);
                setPurchases(count);
-               setSharesOwned(fractionalsOwned);
+               setSharesOwned(parseFloat(fractionalsOwned));
                setOpen(res.history.day[0].open);
                setClose(res.history.day[res.history.day.length - 2].close);
             });
@@ -165,6 +175,7 @@ const InfoContainer = props => {
          portfolioMime[portfolioMime.length - 1].sharesOwned = sharesOwned;
          portfolioMime[portfolioMime.length - 1].purchases = purchases;
          portfolioMime[portfolioMime.length - 1].startDate = actualDate;
+         portfolioMime[portfolioMime.length - 1].frequency = frequency;
          setPortfolio(portfolioMime);
       }
    }, [counter]);
@@ -173,71 +184,88 @@ const InfoContainer = props => {
       <div>
          {counter.map((el, i) => {
             return (
-               <form className="formcontainer" key={i}>
-                  {i === 0? <div className="hadi comp">
-                     Had I invested 
-                     </div> : <div className="hadi comp">
-                        And
-                     </div> }
-                     <div className="qinput comp">
-                     $<input className='quantinput'
+               <form className='formcontainer' key={i}>
+                  {i === 0 ? (
+                     <div className='hadi comp'>Had I invested</div>
+                  ) : (
+                     <div className='hadi comp'></div>
+                  )}
+                  <div className='qinput comp'>
+                     $
+                     <input
+                        className='quantinput'
                         name='quantity'
+                        type='text'
                         placeholder='amount'
                         onChange={e => setQuantity(e.target.value)}
-                     />($50?)
+                     />
+                     ($50?)
                   </div>
                   <div className='aday comp'>
-                     every<select className='select' onChange={handleDropDown}>
+                     every
+                     <select
+                        className='select'
+                        type='text'
+                        onChange={handleDropDown}
+                     >
                         <option value=''></option>
                         <option value='daily'>day</option>
                         <option value='weekly'>week</option>
                         <option value='monthly'>month</option>
-                     </select> (week?)
+                     </select>{' '}
+                     (week?)
                   </div>
 
                   <div className='in comp'>
                      in
-                     
-                     <input className="stock-input comp"
+                     <input
+                        className='stock-input comp'
                         name='symbol'
+                        type='text'
                         placeholder='symbol'
                         onChange={e => setSymbol(e.target.value)}
-                     />(AMZN, NFLX?)
+                     />
+                     (AMZN, NFLX?)
                   </div>
                   <div className='startingon comp'>
                      starting on
-                     
                      <DatePicker
+                        className='picker'
                         placeholder={'use calendar'}
                         selected={startDate}
                         onChange={setStartDate}
-                     />(01/01/2000?)
+                     />
                      {/* <input
                         name='startDate'
                         onChange={e => setStartDate(e.target.value)}
                      /> */}
                   </div>
-                  <div className="plus comp">
-                  <button
-                     type='submit'
-                     onClick={e => {
-                        e.preventDefault();
-                        console.log(frequency);
-                        fetchAndSet();
-                        
-                     }}
-                  >
-                     +
-                  </button>
+                  <div className='plus comp'>
+                     <button
+                        className='plus-button'
+                        type='submit'
+                        onClick={e => {
+                           e.preventDefault();
+                           console.log(frequency);
+                           fetchAndSet();
+                        }}
+                     >
+                        And...
+                     </button>
                   </div>
                </form>
             );
          })}
 
          <Link to='/table/'>
-            <button onClick={props.setPortfolio(portfolio)}>
-               What would I have today?
-            </button>
+            <div className='dream-button'>
+               <button
+                  className='dream'
+                  onClick={props.setPortfolio(portfolio)}
+               >
+                  Daydream!
+               </button>
+            </div>
          </Link>
       </div>
    );

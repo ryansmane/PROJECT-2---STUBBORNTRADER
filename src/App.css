@@ -15,7 +15,7 @@ nav {
   color: black
 }
 body {
-   background-color: white;
+   background-color: #CDBE65;
    margin: 0;
    padding:0;
 }
@@ -27,6 +27,7 @@ body {
 }
 .wholetable {
    width: 100vw;
+   height: 100vh;
    font-size: 9px;;
 }
 table {
@@ -43,6 +44,13 @@ th,
 td {
    display: block;
    border: 1px solid black;
+   
+   height: 11.5%;
+   
+   font-size: 20px;
+   padding: 10px;
+   text-align: right;
+   
 }
 
 table,
@@ -58,46 +66,65 @@ td {
   justify-content: space-between;
   flex-direction: column;
    background-color:#CD6574;
-   width: 100vw;
+   width: 100%;
    height: 15vh;
    text-align: center;
 }
 
 .formcontainer {
   font-family: 'Bowlby One SC', cursive;
+  font-size: 35;
    display: flex;
    flex-direction: column;
    justify-content: center;
    padding-top: 15px;
 }
 .hadi {
-   font-size: 30px;
-   padding-left: 8%;
+   font-size: 35px;
+   padding-left: 4%;
 }
 .quantinput {
-   height: 30px;
+   height: 35px;
+   width: 150px;
    padding: 5px;
+   font-family: 'Bangers', cursive;
+   font-size: 24px;
+   letter-spacing: 2px;
 }
 .qinput {
+  font-size: 25px;
    padding: 5px;
-   padding-left: 10%;
+   padding-left: 50px;
+   
 }
 .aday {
-   padding: 5px;
+  font-size: 20px;
+   padding: 15px;
+   margin: 10px 0px;
+   padding-left: 40px;
    text-align: center;
 }
 .select {
    height: 30px;
    width: 150px;
+   margin: 5px;
+   padding-left: 20px;
+   font-size: 20px;
+   font-family: 'Bangers', cursive;
 }
-.comp {
+/* .comp {
    padding: 10px;
-}
+} */
 .stock-input {
-   height: 30px;
+  margin: 7px;
+  font-size: 24px;
+   height: 45px;
    width: 150px;
+   font-family: 'Bangers', cursive;
+   letter-spacing: 2px;
 }
 .in {
+  padding-top: 0px;
    font-size: 15px;
    padding-left: 14%;
 }
@@ -106,16 +133,50 @@ td {
 }
 
 .startingon {
+  height: 25px;
+  padding-top: 7%;
    padding-left: 16%;
+}
+.picker {
+  margin-left: 10px;
+  width: 150px;
+  height: 25px;
+  font-size: 24px;
+  font-family: 'Bangers', cursive;
 }
 
 .date {
    text-align: center;
 }
-
+.plus-button{
+  width: 110px;
+  height: 50px;
+  font-size: 25px;
+  font-family: 'Bowlby One SC', cursive;
+  background-color: #CD6574;
+  border: none;
+}
 .plus {
    text-align: center;
-   width: 50%;
+   width: 100px;
+   margin: 30px 70px 0px 20px;
+   
+}
+
+.dream {
+  width: 200px;
+  height: 50px;
+  font-size: 25px;
+  font-family: 'Bowlby One SC', cursive;
+  background-color: darkslategray;
+  border: none;
+}
+.dream-button {
+  padding-top: 30px;
+  text-align: center;
+  
+  
+  /* height: 50px; */
 }
 
 @media (min-width: 600px) {
