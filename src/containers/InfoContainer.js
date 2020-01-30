@@ -181,25 +181,31 @@ const InfoContainer = props => {
    }, [counter]);
 
    return (
-      <div>
+      <div className="main">
+         <form className='formcontainer'>
          {counter.map((el, i) => {
             return (
-               <form className='formcontainer' key={i}>
+               <div className='form' key={i}>
                   {i === 0 ? (
-                     <div className='hadi comp'>Had I invested</div>
+                     <div className='hadi comp'><h1 className="had">Had I invested:</h1><p className='tips'>(Multiple entries are allowed, but you must click the plus sign after completing each row)</p></div>
                   ) : (
-                     <div className='hadi comp'></div>
+                     <div></div>
                   )}
+                  <div className='propercont'>
                   <div className='qinput comp'>
                      $
                      <input
                         className='quantinput'
                         name='quantity'
                         type='text'
-                        placeholder='amount'
+                        placeholder='Amount'
                         onChange={e => setQuantity(e.target.value)}
                      />
-                     ($50?)
+                     {i === 0 ? (
+                        <span className='fifty comp'>(50?)</span>
+                     ) : (
+                           <span className='fifty comp'></span>
+                     )}
                   </div>
                   <div className='aday comp'>
                      every
@@ -213,7 +219,11 @@ const InfoContainer = props => {
                         <option value='weekly'>week</option>
                         <option value='monthly'>month</option>
                      </select>{' '}
-                     (week?)
+                     {i === 0 ? (
+                        <span className='week comp'>(week?)</span>
+                     ) : (
+                           <span className='week comp'></span>
+                        )}
                   </div>
 
                   <div className='in comp'>
@@ -222,10 +232,14 @@ const InfoContainer = props => {
                         className='stock-input comp'
                         name='symbol'
                         type='text'
-                        placeholder='symbol'
+                        placeholder='Symbol'
                         onChange={e => setSymbol(e.target.value)}
                      />
-                     (AMZN, NFLX?)
+                     {i === 0 ? (
+                        <span className='tickers comp'>(AMZN? NFLX?)</span>
+                     ) : (
+                           <span className='tickers comp'></span>
+                        )}
                   </div>
                   <div className='startingon comp'>
                      starting on
@@ -250,20 +264,28 @@ const InfoContainer = props => {
                            fetchAndSet();
                         }}
                      >
-                        And...
+                        +
                      </button>
                   </div>
-               </form>
+                  </div>
+                     </div>
             );
-         })}
+               })}
+         </form>
 
          <Link to='/table/'>
             <div className='dream-button'>
                <button
-                  className='dream'
+                  className='dreammobile'
                   onClick={props.setPortfolio(portfolio)}
                >
                   Daydream!
+               </button>
+               <button
+                  className='dreamformal'
+                  onClick={props.setPortfolio(portfolio)}
+               >
+                  Generate portfolio
                </button>
             </div>
          </Link>
