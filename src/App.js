@@ -13,7 +13,7 @@ function App() {
 
    return (
       <div>
-         <Header setPortfolio={setPortfolio}/>
+         <Header setPortfolio={setPortfolio} />
          <div className='mainPage'>
             <Switch>
                <Route
@@ -27,11 +27,17 @@ function App() {
                   path='/table'
                   exact
                   render={() => {
-                     return <Table savedProfits={savedProfits} setSavedProfits={setSavedProfits} portfolio={portfolio} />;
+                     return (
+                        <Table
+                           savedProfits={savedProfits}
+                           setSavedProfits={setSavedProfits}
+                           portfolio={portfolio}
+                        />
+                     );
                   }}
                />
             </Switch>
-            <HistoryTable savedProfits={savedProfits}/>
+            <HistoryTable savedProfits={savedProfits} />
          </div>
       </div>
    );

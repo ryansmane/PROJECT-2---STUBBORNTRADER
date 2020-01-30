@@ -20,6 +20,7 @@
       margin: 0;
       padding: 0;
    }
+
    .mainh1 {
       letter-spacing: 2px;
       font-size: 35px;
@@ -94,7 +95,7 @@
       padding-left: 6%;
    }
    .tips {
-     display:none;
+      display: none;
    }
    .quantinput {
       height: 35px;
@@ -212,13 +213,31 @@
       margin: 0;
       padding: 0;
    }
+   .pos {
+      color: #3268cd;
+   }
+
+   .neg {
+      color: #900c3f;
+   }
+   .aday {
+      padding-right: 2px;
+   }
+   .in {
+      padding-right: 3px;
+   }
    body {
       background-color: #62b5cd;
    }
+   .link {
+      text-decoration: none;
+      color: black;
+   }
    nav {
+      color: black;
+      font-family: 'Spectral SC', serif;
+      background-color: white;
       border: 1px solid black;
-      display: flex;
-      justify-content: space-evenly;
       margin-bottom: 0px;
       padding: 0px 10px;
       letter-spacing: 2px;
@@ -230,8 +249,9 @@
    }
    .mainh1 {
       letter-spacing: 2px;
-      font-size: 35px;
-      padding-top: 32px;
+      font-size: 45px;
+      padding-top: 2.3vh;
+      font-family: 'Spectral SC', serif;
    }
 
    .plus-button {
@@ -245,6 +265,7 @@
    }
 
    .mainHeader {
+      font-family: 'Spectral SC', serif;
       color: white;
       font-family: 'Bangers', cursive;
       padding: 0px;
@@ -252,7 +273,7 @@
       display: flex;
       justify-content: space-between;
       flex-direction: column;
-      background-color: #dac488;
+      background-color: #62b5cd;
       width: 100%;
       height: 15vh;
       text-align: center;
@@ -268,34 +289,38 @@
    }
    .had {
       font-size: 34px;
-      font-family: 'Nanum Gothic Coding', monospace;
       padding-bottom: 2px;
+      font-family: 'Old Standard TT', serif;
    }
    .hadi {
       padding: 20px 20px 5px 20px;
    }
    .tips {
-     font-size: 12px;
-     font-style: italic;
+      font-size: 12px;
+      font-style: italic;
    }
 
    .quantinput {
       width: 6vw;
       height: 3vh;
+      font-family: 'Old Standard TT', serif;
    }
    .select {
       margin-left: 4px;
       width: 6vw;
       height: 3.2vh;
+      font-family: 'Old Standard TT', serif;
    }
    .stock-input {
       width: 6vw;
       height: 2.7vh;
       margin-left: 4px;
+      font-family: 'Old Standard TT', serif;
    }
    .picker {
-      width: 6vw;
+      width: 6.2vw;
       height: 2.7vh;
+      font-family: 'Old Standard TT', serif;
       margin-left: 4px;
    }
    .fifty {
@@ -317,6 +342,7 @@
    .dreamformal {
       height: 35px;
       width: 150px;
+      font-family: 'Old Standard TT', serif;
    }
 
    .dream-button {
@@ -326,12 +352,13 @@
 
    .mainPage {
       display: flex;
+      font-family: 'Old Standard TT', serif;
+      height: 85vh;
    }
 
    .wholetable {
-      width: 50vw;
-      height: 15vh;
-      font-size: 9px;
+      margin: auto;
+      margin-top: 2vh;
    }
    table {
       border-collapse: collapse;
@@ -375,6 +402,8 @@
       width: 50vw;
       border: 1px solid black;
       background-color: white;
+      height: 85vh;
+      font-family: 'Old Standard TT', serif;
    }
 
    table,
@@ -384,18 +413,17 @@
    }
 
    .portTable {
-      display: flex;
-      flex-direction: column;
-      width: 50vw;
-      height: 100vh;
-      margin: 10px;
       padding: 10px;
-      background-color: white;
+      margin: 10px;
+      width: 50vw;
       border: 1px solid black;
+      background-color: white;
+      height: 85vh;
    }
 
    .saveButton {
       width: 10vw;
+      font-family: 'Old Standard TT', serif;
    }
 
    .bd {
@@ -404,9 +432,11 @@
 
    h2 {
       text-align: center;
+      border-bottom: 1px solid black;
    }
 
    .historyTable {
-     margin: auto;
+      margin: auto;
+      margin-top: 2vh;
    }
 }

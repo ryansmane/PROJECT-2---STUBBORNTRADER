@@ -181,96 +181,104 @@ const InfoContainer = props => {
    }, [counter]);
 
    return (
-      <div className="main">
+      <div className='main'>
          <form className='formcontainer'>
-         {counter.map((el, i) => {
-            return (
-               <div className='form' key={i}>
-                  {i === 0 ? (
-                     <div className='hadi comp'><h1 className="had">Had I invested:</h1><p className='tips'>(Multiple entries are allowed, but you must click the plus sign after completing each row)</p></div>
-                  ) : (
-                     <div></div>
-                  )}
-                  <div className='propercont'>
-                  <div className='qinput comp'>
-                     $
-                     <input
-                        className='quantinput'
-                        name='quantity'
-                        type='text'
-                        placeholder='Amount'
-                        onChange={e => setQuantity(e.target.value)}
-                     />
+            {counter.map((el, i) => {
+               return (
+                  <div className='form' key={i}>
                      {i === 0 ? (
-                        <span className='fifty comp'>(50?)</span>
+                        <div className='hadi comp'>
+                           <h1 className='had'>Had you invested:</h1>
+                           <p className='tips'>
+                              (Multiple entries are allowed, but you must click
+                              the plus sign after completing each row)
+                           </p>
+                        </div>
                      ) : (
-                           <span className='fifty comp'></span>
+                        <div></div>
                      )}
-                  </div>
-                  <div className='aday comp'>
-                     every
-                     <select
-                        className='select'
-                        type='text'
-                        onChange={handleDropDown}
-                     >
-                        <option value=''></option>
-                        <option value='daily'>day</option>
-                        <option value='weekly'>week</option>
-                        <option value='monthly'>month</option>
-                     </select>{' '}
-                     {i === 0 ? (
-                        <span className='week comp'>(week?)</span>
-                     ) : (
-                           <span className='week comp'></span>
-                        )}
-                  </div>
+                     <div className='propercont'>
+                        <div className='qinput comp'>
+                           $
+                           <input
+                              className='quantinput'
+                              name='quantity'
+                              type='text'
+                              placeholder='Amount'
+                              onChange={e => setQuantity(e.target.value)}
+                           />
+                           {i === 0 ? (
+                              <span className='fifty comp'>(50?)</span>
+                           ) : (
+                              <span className='fifty comp'></span>
+                           )}
+                        </div>
+                        <div className='aday comp'>
+                           every
+                           <select
+                              className='select'
+                              type='text'
+                              onChange={handleDropDown}
+                           >
+                              <option value=''></option>
+                              <option value='daily'>day</option>
+                              <option value='weekly'>week</option>
+                              <option value='monthly'>month</option>
+                           </select>{' '}
+                           {i === 0 ? (
+                              <span className='week comp'>(week?)</span>
+                           ) : (
+                              <span className='week comp'></span>
+                           )}
+                        </div>
 
-                  <div className='in comp'>
-                     in
-                     <input
-                        className='stock-input comp'
-                        name='symbol'
-                        type='text'
-                        placeholder='Symbol'
-                        onChange={e => setSymbol(e.target.value)}
-                     />
-                     {i === 0 ? (
-                        <span className='tickers comp'>(AMZN? NFLX?)</span>
-                     ) : (
-                           <span className='tickers comp'></span>
-                        )}
-                  </div>
-                  <div className='startingon comp'>
-                     starting on
-                     <DatePicker
-                        className='picker'
-                        placeholder={'use calendar'}
-                        selected={startDate}
-                        onChange={setStartDate}
-                     />
-                     {/* <input
+                        <div className='in comp'>
+                           in
+                           <input
+                              className='stock-input comp'
+                              name='symbol'
+                              type='text'
+                              placeholder='Symbol'
+                              onChange={e => setSymbol(e.target.value)}
+                           />
+                           {i === 0 ? (
+                              <span className='tickers comp'>
+                                 (AMZN? NFLX?)
+                              </span>
+                           ) : (
+                              <span className='tickers comp'></span>
+                           )}
+                        </div>
+                        <div className='startingon comp'>
+                           starting on
+                           <DatePicker
+                              className='picker'
+                              placeholder={'use calendar'}
+                              selected={startDate}
+                              onChange={setStartDate}
+                           />
+                           {/* <input
                         name='startDate'
                         onChange={e => setStartDate(e.target.value)}
                      /> */}
-                  </div>
-                  <div className='plus comp'>
-                     <button
-                        className='plus-button'
-                        type='submit'
-                        onClick={e => {
-                           e.preventDefault();
-                           console.log(frequency);
-                           fetchAndSet();
-                        }}
-                     >
-                        +
-                     </button>
-                  </div>
-                  </div>
+                        </div>
+                        <div className='plus comp'>
+                           <button
+                              className='plus-button'
+                              type='submit'
+                              onClick={e => {
+                                 e.preventDefault();
+                                 console.log(frequency);
+                                 fetchAndSet();
+                              }}
+                           >
+                              +
+                           </button>
+                        </div>
                      </div>
-            );
-               })}
+                  </div>
+               );
+            })}
          </form>
 
          <Link to='/table/'>

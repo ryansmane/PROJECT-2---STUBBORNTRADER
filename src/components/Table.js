@@ -31,8 +31,8 @@ function Table(props) {
                            {entry.frequency.toUpperCase()}(${entry.quantity})
                         </td>
                         <td>{entry.startDate}</td>
-                        <td>{addCommas(entry.open.toFixed(2))}</td>
-                        <td>{addCommas(entry.close.toFixed(2))}</td>
+                        <td>${addCommas(entry.open.toFixed(2))}</td>
+                        <td>${addCommas(entry.close.toFixed(2))}</td>
                         <td>{addCommas(entry.sharesOwned.toFixed(2))}</td>
                         <td>
                            $
@@ -43,7 +43,17 @@ function Table(props) {
                               ).toFixed(2)
                            )}
                         </td>
-                        <td>
+                        <td
+                           className={
+                              parseFloat(entry.sharesOwned) *
+                                 parseFloat(entry.close) -
+                                 parseFloat(entry.quantity) *
+                                    parseFloat(entry.purchases) >=
+                              0
+                                 ? 'pos'
+                                 : 'neg'
+                           }
+                        >
                            $
                            {addCommas(
                               (
@@ -79,7 +89,21 @@ function Table(props) {
                            .toFixed(2)
                      )}
                   </th>
-                  <th>
+                  <th
+                     className={
+                        props.portfolio.reduce(
+                           (accumulator, currentValue) =>
+                              accumulator +
+                              parseFloat(currentValue.sharesOwned) *
+                                 parseFloat(currentValue.close) -
+                              parseFloat(currentValue.quantity) *
+                                 parseFloat(currentValue.purchases),
+                           0
+                        ) >= 0
+                           ? 'pos'
+                           : 'neg'
+                     }
+                  >
                      $
                      {addCommas(
                         props.portfolio
@@ -102,19 +126,30 @@ function Table(props) {
             <button
                className='saveButton'
                onClick={() => {
-                var playerArr = [];
-                props.portfolio.forEach(entry => {
-                    var entryProfit = parseFloat(entry.sharesOwned) *
-                        parseFloat(entry.close) -
-                        parseFloat(entry.quantity) *
-                        parseFloat(entry.purchases)
-                    var obj = {sym: entry.symbol, profit: entryProfit}
-                    playerArr.push(obj)
-                } )
+                  var day = new Date();
+                  console.log(day);
+                  var time = day
+                     .toString()
+                     .split(' ')[4]
+                     .split(':');
+                  time.pop();
+                  time = time.join(':');
 
-                playerArr.sort((a,b) => a.profit > b.profit ? 1 : -1)
-                var topPlayer = playerArr[playerArr.length-1].sym
-                var biggestLoser = playerArr[0].sym
+                  console.log(time);
+                  var playerArr = [];
+                  props.portfolio.forEach(entry => {
+                     var entryProfit =
+                        parseFloat(entry.sharesOwned) *
+                           parseFloat(entry.close) -
+                        parseFloat(entry.quantity) *
+                           parseFloat(entry.purchases);
+                     var obj = { sym: entry.symbol, profit: entryProfit };
+                     playerArr.push(obj);
+                  });
+
+                  playerArr.sort((a, b) => (a.profit > b.profit ? 1 : -1));
+                  var topPlayer = playerArr[playerArr.length - 1].sym;
+                  var biggestLoser = playerArr[0].sym;
 
                   let equity = addCommas(
                      props.portfolio
@@ -149,7 +184,8 @@ function Table(props) {
                      numEntries: arr.length,
                      topPlayer: topPlayer,
                      biggestLoser: biggestLoser,
-                     equity: equity
+                     equity: equity,
+                     time: time
                   };
                   let copyOfSavedProfits = props.savedProfits.slice(0);
                   copyOfSavedProfits.push(data);
