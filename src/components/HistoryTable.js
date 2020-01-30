@@ -13,7 +13,7 @@ function HistoryTable(props) {
                      <td>Entries: {obj.numEntries}</td>
                      <td>Top Player: {obj.topPlayer}</td>
                      <td>Equity: ${obj.equity}</td>
-                     <td className={obj.profit >= 0 ? 'pos' : 'neg'}>
+                     <td className={parseFloat(obj.profit) >= 0 ? 'pos' : 'neg'}>
                         Profit: ${obj.profit}
                      </td>
                   </tr>
