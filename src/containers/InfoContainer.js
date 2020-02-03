@@ -44,11 +44,9 @@ const InfoContainer = props => {
    };
 
    const handleDropDown = e => {
-      console.log(e.target.value);
       setFrequency(e.target.value);
    };
    const fetchAndSet = () => {
-      console.log('button');
       fetch(
          `https://sandbox.tradier.com/v1/markets/history?symbol=${symbol.toUpperCase()}&interval=daily&start=${formatDate(
             startDate
@@ -62,7 +60,6 @@ const InfoContainer = props => {
       )
          .then(res => res.json())
          .then(res => {
-            console.log(res);
             var fractionalsOwned = 0;
             var count = 0;
             var date = res.history.day[0].date;
@@ -114,60 +111,17 @@ const InfoContainer = props => {
             let counterCopy = counter.slice(0, counter[counter.length - 1]);
             let last = counterCopy[counterCopy.length - 1] + 1;
             counterCopy.push(last);
-            setCounter(counterCopy);
+            setCounter(counterCopy); 
+            
+
+            
          });
+         
    };
 
    useEffect(() => {
-      console.log('effect');
-      if (portfolio.length > 0) {
-         fetch(
-            `https://sandbox.tradier.com/v1/markets/history?symbol=${symbol.toUpperCase()}&interval=daily&start=${formatDate(
-               startDate
-            )}`,
-            {
-               headers: {
-                  Accept: 'application/json',
-                  Authorization: `Bearer rE7f2NeTyBINSPSy0LmzZql5Ak8m`
-               }
-            }
-         )
-            .then(res => res.json())
-            .then(res => {
-               var fractionalsOwned = 0;
-               var count = 0;
-               var date = res.history.day[0].date;
-               var freq;
-               switch (frequency) {
-                  case 'daily':
-                     freq = 1;
-                     break;
-                  case 'weekly':
-                     freq = 5;
-                     break;
-                  case 'monthly':
-                     freq = 30;
-                     break;
-                  default:
-                     freq = 1;
-               }
-
-               for (let i = 0; i < res.history.day.length; i += freq) {
-                  count++;
-                  if (!isNaN(res.history.day[i].open)) {
-                     fractionalsOwned +=
-                        parseFloat(quantity) /
-                        parseFloat(res.history.day[i].open);
-                  } else {
-                     fractionalsOwned += 0;
-                  }
-               }
-               setActualDate(date);
-               setPurchases(count);
-               setSharesOwned(parseFloat(fractionalsOwned));
-               setOpen(res.history.day[0].open);
-               setClose(res.history.day[res.history.day.length - 2].close);
-            });
+      
+         if (portfolio.length > 0) {
 
          let portfolioMime = portfolio.slice(0);
          portfolioMime[portfolioMime.length - 1].open = open;
@@ -177,7 +131,8 @@ const InfoContainer = props => {
          portfolioMime[portfolioMime.length - 1].startDate = actualDate;
          portfolioMime[portfolioMime.length - 1].frequency = frequency;
          setPortfolio(portfolioMime);
-      }
+         }
+      
    }, [counter]);
 
    return (
@@ -253,14 +208,9 @@ const InfoContainer = props => {
                            starting on
                            <DatePicker
                               className='picker'
-                              placeholder={'use calendar'}
                               selected={startDate}
                               onChange={setStartDate}
                            />
-                           {/* <input
-                        name='startDate'
-                        onChange={e => setStartDate(e.target.value)}
-                     /> */}
                         </div>
                         <div className='plus comp'>
                            <button
@@ -268,7 +218,7 @@ const InfoContainer = props => {
                               type='submit'
                               onClick={e => {
                                  e.preventDefault();
-                                 console.log(frequency);
+
                                  fetchAndSet();
                               }}
                            >

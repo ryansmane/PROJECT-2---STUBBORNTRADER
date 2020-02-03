@@ -51,7 +51,7 @@
 
    .formcontainer {
       font-family: 'Bowlby One SC', cursive;
-      font-size: 35;
+      font-size: 35px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -214,8 +214,8 @@
       padding: 0;
    }
 
-   .title{
-      height: 10vh
+   .title {
+      height: 10vh;
    }
    .pos {
       color: #3268cd;
@@ -282,7 +282,7 @@
    .mainHeader {
       font-family: 'Spectral SC', serif;
       color: white;
-      
+
       padding: 0px;
       margin: 0px;
       display: flex;
@@ -300,7 +300,6 @@
       margin: 10px 10px 0px 10px;
       display: flex;
       flex-direction: row;
-      
    }
    .had {
       font-size: 34px;
@@ -383,7 +382,23 @@
       margin: 10px;
       width: 40vw;
    }
-
+   .hishead {
+      text-align: right;
+      border-bottom: 1px solid black;
+      display: flex;
+   }
+   .hish2 {
+      padding-left: 16.5vw;
+      padding-right: 13vw;
+   }
+   .hisbutton {
+      font-family: 'Old Standard TT', serif;
+      border: none;
+      color: #62b5cd;
+      background-color: white;
+      outline: none;
+      margin-top: 1.5vh;
+   }
    .main {
       width: 50vw;
       padding: 10px;
@@ -401,6 +416,7 @@
 
       text-align: right;
    }
+
    td {
       border: 1px solid black;
 
@@ -445,9 +461,11 @@
       text-align: center;
    }
 
+   .porth2 {
+      border-bottom: 1px solid black;
+   }
    h2 {
       text-align: center;
-      border-bottom: 1px solid black;
    }
 
    .historyTable {

@@ -3,9 +3,9 @@ import InfoContainer from './containers/InfoContainer';
 import Header from './components/Header';
 import HistoryTable from './components/HistoryTable';
 import Table from './components/Table';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import './App.css';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 function App() {
    const [portfolio, setPortfolio] = useState([]);
@@ -37,7 +37,7 @@ function App() {
                   }}
                />
             </Switch>
-            <HistoryTable savedProfits={savedProfits} />
+            <HistoryTable setSavedProfits={setSavedProfits} savedProfits={savedProfits} />
          </div>
       </div>
    );

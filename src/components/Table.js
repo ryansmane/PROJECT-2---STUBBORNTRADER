@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+
 
 function addCommas(x) {
    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -8,7 +8,7 @@ function addCommas(x) {
 function Table(props) {
    return (
       <div className='portTable'>
-         <h2>Portfolio</h2>
+         <h2 className="porth2">Portfolio</h2>
          <table className='wholetable'>
             <tbody>
                <tr>
@@ -127,7 +127,7 @@ function Table(props) {
                className='saveButton'
                onClick={() => {
                   var day = new Date();
-                  console.log(day);
+
                   var time = day
                      .toString()
                      .split(' ')[4]
@@ -135,7 +135,6 @@ function Table(props) {
                   time.pop();
                   time = time.join(':');
 
-                  console.log(time);
                   var playerArr = [];
                   props.portfolio.forEach(entry => {
                      var entryProfit =
