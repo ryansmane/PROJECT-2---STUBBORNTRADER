@@ -8,39 +8,42 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 
 function App() {
-   const [portfolio, setPortfolio] = useState([]);
-   const [savedProfits, setSavedProfits] = useState([]);
+  const [portfolio, setPortfolio] = useState([]);
+  const [savedProfits, setSavedProfits] = useState([]);
 
-   return (
-      <div>
-         <Header setPortfolio={setPortfolio} />
-         <div className='mainPage'>
-            <Switch>
-               <Route
-                  path='/'
-                  exact
-                  render={() => {
-                     return <InfoContainer setPortfolio={setPortfolio} />;
-                  }}
-               />
-               <Route
-                  path='/table'
-                  exact
-                  render={() => {
-                     return (
-                        <Table
-                           savedProfits={savedProfits}
-                           setSavedProfits={setSavedProfits}
-                           portfolio={portfolio}
-                        />
-                     );
-                  }}
-               />
-            </Switch>
-            <HistoryTable setSavedProfits={setSavedProfits} savedProfits={savedProfits} />
-         </div>
+  return (
+    <div>
+      <Header setPortfolio={setPortfolio} />
+      <div className='mainPage'>
+        <Switch>
+          <Route
+            path='/'
+            exact
+            render={() => {
+              return <InfoContainer setPortfolio={setPortfolio} />;
+            }}
+          />
+          <Route
+            path='/table'
+            exact
+            render={() => {
+              return (
+                <Table
+                  savedProfits={savedProfits}
+                  setSavedProfits={setSavedProfits}
+                  portfolio={portfolio}
+                />
+              );
+            }}
+          />
+        </Switch>
+        <HistoryTable
+          setSavedProfits={setSavedProfits}
+          savedProfits={savedProfits}
+        />
       </div>
-   );
+    </div>
+  );
 }
 
 export default App;
