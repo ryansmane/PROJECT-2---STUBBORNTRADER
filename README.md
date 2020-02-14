@@ -7,3 +7,5 @@
 - It has a tacky mobile view that is really only decent on an Iphone 7/8 and a more elegant styling on desktop up to a certain point when the tables start to fall into themselves. I decided to do polar styles to try to learn CSS, as I had been avoiding it up to this point. 
 - And it turns out I was right to be avoiding it, because after 200+ lines of arduous styling, I had gained a massive amount of admiration for vanilla CSS artists and very little to show for it inside of my app. From now on it will be bootstrap for me.
 
+
+
